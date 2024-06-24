@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать тип</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p>Редактирование типа</p>
+    </div>
+
+    <div class="centerContent">
+
+        <div class="buttonNav">
+            <a th:href="@{/closettype/{id}(id=${closetType.getId()})}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+            <form th:method="PATCH" th:action="@{/closettype/{id}(id=${closetType.getId()})}" th:object="${closetType}">
+                <div class="formLine">
+                    <label class="formLabel" for="name">Название: </label>
+                    <input class="formInputText" type="text" th:field="*{name}" id="name"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="shelves">Изменять кол-во полок нельзя: </label>
+                    <input readonly class="formInputText" type="text" th:field="*{shelves}" th:value="${closetType.getShelves()}" id="shelves"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('shelves')}" th:errors="*{shelves}">shelves Error</div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="cellsForShelf">Изменять кол-во ячеек на полку нельзя: </label>
+                    <input readonly class="formInputText" type="text" th:field="*{cellsForShelf}" th:value="${closetType.getCellsForShelf()}" id="cellsForShelf"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('cellsForShelf')}" th:errors="*{cellsForShelf}">cellsForShelf Error</div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="capacity">Изменять общую вместимость нельзя: </label>
+                    <input readonly class="formInputText" type="text" th:field="*{capacity}" th:value="${closetType.getCapacity()}" id="capacity"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">capacity Error</div>
+
+                <div class="buttonEdit">
+                    <input class="formButton" type="submit" value="Обновить"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница типа</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p>Страница типа</p>
+    </div>
+
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/closettype}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+
+            <table class="tableMain">
+                <tbody class="tableBody">
+                <!--<tr>
+                    <td class="tdName" th:text="${'Идентификатор:'}">VALUE</td>
+                    <td th:text="${closetType.getId()}">Value</td>
+                </tr>-->
+                <tr>
+                    <td class="tdName" th:text="${'Название:'}">VALUE</td>
+                    <td th:text="${closetType.getName()}">Value</td>
+                </tr>
+                <tr>
+                    <td class="tdName" th:text="${'Количество полок:'}">VALUE</td>
+                    <td th:text="${closetType.getShelves()}">Value</td>
+                </tr>
+                <tr>
+                    <td class="tdName" th:text="${'Количество ячеек на одну полку:'}">VALUE</td>
+                    <td th:text="${closetType.getCellsForShelf()}">Value</td>
+                </tr>
+                <tr>
+                    <td class="tdName" th:text="${'Общая вместимость:'}">VALUE</td>
+                    <td th:text="${closetType.getCapacity()}">Value</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="buttonEdit">
+            <a th:href="@{/closettype/{id}/edit(id=${closetType.getId()})}">Редактировать тип</a>
+            <br>
+            <br>
+            <button id="btnPressed" class="formButton">Удалить тип</button>
+            <form class="formHidden" th:method="DELETE" th:action="@{/closettype/{id}(id=${closetType.getId()})}">
+                <input id="btnHidden" class="formButtonHidden" type="submit" value="Удалить тип"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+<script type="text/javascript" th:src="@{/js/deleteConfirm.js}"></script>
+
+</body>
+</html>

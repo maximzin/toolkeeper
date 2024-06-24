@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница инструмента</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p>Страница инструмента</p>
+    </div>
+
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/tool}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+
+            <table class="tableMain">
+                <tbody class="tableBody">
+                <!--<tr>
+                    <td class="tdName" th:text="${'Идентификатор:'}">VALUE</td>
+                    <td th:text="${tool.getId()}">Value</td>
+                </tr>-->
+                <tr>
+                    <td class="tdName" th:text="${'Название:'}">VALUE</td>
+                    <td th:text="${tool.getName()}">Value</td>
+                </tr>
+                <tr>
+                    <td class="tdName" th:text="${'Тип:'}">VALUE</td>
+                    <td th:text="${tool.toolType.getName()}">Value</td>
+                </tr>
+                <tr>
+                    <td class="tdName" th:text="${'Изготовитель:'}">VALUE</td>
+                    <td th:text="${tool.getManufacturer()}">Value</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="buttonEdit">
+            <a th:href="@{/tool/{id}/edit(id=${tool.getId()})}">Редактировать инструмент</a>
+            <br>
+            <br>
+            <button id="btnPressed" class="formButton">Удалить инструмент</button>
+            <form class="formHidden" th:method="DELETE" th:action="@{/tool/{id}(id=${tool.getId()})}">
+                <input id="btnHidden" class="formButtonHidden" type="submit" value="Удалить инструмент"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+<script type="text/javascript" th:src="@{/js/deleteConfirm.js}"></script>
+
+</body>
+</html>

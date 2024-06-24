@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый тип</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p>Новый тип</p>
+    </div>
+
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/closettype}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+            <form th:method="POST" th:action="@{/closettype}" th:object="${closetType}">
+                <div class="formLine">
+                    <label class="formLabel" for="name">Название: </label>
+                    <input class="formInputText" type="text" th:field="*{name}" id="name"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="shelves">Количество полок: </label>
+                    <input class="formInputText" type="text" th:field="*{shelves}" id="shelves" oninput="calculate()"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('shelves')}" th:errors="*{shelves}">Shelves Error</div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="cellsForShelf">Количество ячеек на полку: </label>
+                    <input class="formInputText" type="text" th:field="*{cellsForShelf}" id="cellsForShelf" oninput="calculate()"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('cellsForShelf')}" th:errors="*{cellsForShelf}">cellsForShelf Error</div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="capacity">Общая вместимость: (на данный момент должна быть равна произведению количества полок на количество ячеек) </label>
+                    <input readonly class="formInputText" type="text" th:field="*{capacity}" id="capacity"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">capacity Error</div>
+
+                <div class="buttonEdit">
+                    <input class="formButton" type="submit" value="Создать"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+<script type="text/javascript" th:src="@{/js/closetCapacity.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все цехи</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p>Все цехи</p>
+    </div>
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/}">Вернуться назад</a>
+        </div>
+        <div class="listContent">
+            <table class="tableMain">
+                <thead class="tableHead">
+                <tr>
+                    <th>No.</th>
+                    <th>Обозначение</th>
+                    <th>Действия</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                <tr th:each="ceh, cehCount : ${cehs}">
+                    <td th:text="${cehCount.count}">Value</td>
+                    <td th:text="${ceh.getName()}">Value</td>
+                    <td><a th:href="@{/ceh/{id}(id=${ceh.getId()})}"
+                           th:text="Подробнее">ceh</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="buttonEdit">
+            <a href="/ceh/new">Создать цех</a>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+</body>
+</html>

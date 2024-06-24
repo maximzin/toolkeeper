@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать шкаф</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p>Редактирование шкафа</p>
+    </div>
+
+    <div class="centerContent">
+
+        <div class="buttonNav">
+            <a th:href="@{/closet/{id}(id=${closet.getId()})}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+            <form th:method="PATCH" th:action="@{/closet/{id}(id=${closet.getId()})}" th:object="${currCloset}">
+                <div class="formLine">
+                    <label class="formLabel" for="name">Название: </label>
+                    <input class="formInputText" type="text" th:field="*{name}" id="name"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="id_type">Изменять тип шкафа нельзя: </label>
+                    <input type="hidden" th:value="${currCloset.getIdType()}" th:attr="name='idType'"/>
+                    <input readonly class="formInputText" type="text" th:value="${currCloset.closetType.getName()}" id="id_type"/>
+                </div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="id_ceh">Выберите цех: </label>
+                    <select class="formSelect" th:object="${currCloset}" th:field="*{idCeh}" id="id_ceh">
+                        <option th:each="ceh : ${cehs}" th:value="${ceh.getId()}" th:text="${ceh.getName()}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="buttonEdit">
+                    <input class="formButton" type="submit" value="Обновить"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание инструмента</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p>Создание инструмента</p>
+    </div>
+
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/tool}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+            <form th:method="POST" th:action="@{/tool}" th:object="${tool}">
+                <div class="formLine">
+                <label class="formLabel" for="name">Название: </label>
+                <input class="formInputText" type="text" th:field="*{name}" id="name"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+
+                <div class="formLine">
+                <label class="formLabel" for="id_type">Выберите тип: </label>
+                <select class="formSelect" th:object="${tool}" th:field="*{idType}" id="id_type">
+                    <option th:each="type : ${types}" th:value="${type.getId()}" th:text="${type.getName()}">
+                    </option>
+                </select>
+                </div>
+
+                <div class="formLine">
+                <label class="formLabel" for="manufacturer">Изготовитель: </label>
+                <input class="formInputText" type="text" th:field="*{manufacturer}" id="manufacturer"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}">Name Error</div>
+
+                <div class="buttonEdit">
+                <input class="formButton" type="submit" value="Создать"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+</body>
+</html>

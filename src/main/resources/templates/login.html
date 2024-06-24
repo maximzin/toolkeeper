@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        .mainContent {
+            font-size: 20px;
+            text-align: center;
+            font-family: sans-serif;
+            color: #2c2c2c;
+            text-decoration: none;
+            flex-grow: 1;
+            padding-bottom: 50px;
+        }
+
+        .titleMainContent {
+            width: 300px;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bolder;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .centerContent {
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 14px solid #2854a238;
+            border-radius: 34px;
+            background-color: white;
+        }
+
+        .listContent {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .formLine {
+            width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .formLabel {
+            width: 200px;
+            display: inline-block;
+            text-align: right;
+        }
+
+        .formInputText {
+            width: 200px;
+            border-radius: 5px;
+            border: 2px solid grey;
+            margin-left: 10px;
+        }
+
+        .buttonEdit {
+            width: 200px;
+            padding: 6px;
+            border: 6px solid #0000001c;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 15px;
+            font-size: 15px;
+        }
+
+        .formButton {
+            background: transparent;
+            font-size: 15px;
+            height: 20px;
+            color: #2c2c2c;
+            text-decoration: none;
+            border: 2px solid transparent;
+            box-sizing: border-box;
+            padding: 1px 1px 18px 1px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="mainContent">
+    <div class="titleMainContent">
+        <h1>Login</h1>
+    </div>
+
+    <div class="centerContent">
+        <br>
+        <div class="listContent">
+            <form action="/login" method="post">
+                <div class="formLine">
+                    <label class="formLabel" for="username">Username: </label>
+                    <input class="formInputText" type="text" name="username" id="username">
+                </div>
+                <div class="formLine">
+                    <label class="formLabel" for="password">Password: </label>
+                    <input class="formInputText" type="password" name="password" id="password">
+                </div>
+                <div class="buttonEdit">
+                    <button class="formButton" type="submit">Вход</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

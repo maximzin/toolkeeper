@@ -1,0 +1,370 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ededed;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Стили для шапки */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(45deg, #606060, #676767);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    height: 68px;
+}
+
+/* Стили для логотипа */
+.logo img {
+    max-height: 50px;
+    position: absolute;
+    top: 9px;
+    left: 9px;
+}
+
+/* Стили для навигации */
+nav {
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Стили для футера */
+footer {
+    background: linear-gradient(45deg, #606060, #676767);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    height: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-container p {
+    color: #ffffff73;
+}
+
+.mainContent {
+    font-size: 20px;
+    text-align: center;
+    font-family: sans-serif;
+    color: #2c2c2c;
+    text-decoration: none;
+    flex-grow: 1;
+    padding-bottom: 50px;
+}
+
+.mainContent a {
+    color: #2c2c2c;
+    text-decoration: none;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    padding: 1px;
+}
+
+.mainContent a:hover {
+    color: #ffffff;
+    background: #246ff5b8;
+    border-radius: 6px;
+    padding: 1px;
+}
+
+.titleMainContent {
+    width: 300px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bolder;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.buttonNav {
+    width: 130px;
+    padding: 6px;
+    border: 6px solid #0000001c;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.formLine {
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.formLabel {
+    width: 200px;
+    display: inline-block;
+    text-align: right;
+}
+
+
+.formInputText {
+    width: 200px;
+    border-radius: 5px;
+    border: 2px solid grey;
+    margin-left: 10px;
+}
+
+.formSelect {
+    width: 207px;
+    border-radius: 5px;
+    border: 2px solid grey;
+    margin-left: 10px;
+}
+
+.formButton {
+    background: transparent;
+    font-size: 15px;
+    height: 20px;
+    color: #2c2c2c;
+    text-decoration: none;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    padding: 1px 1px 18px 1px;
+    display: inline-block;
+}
+
+.formButtonHidden {
+    background: transparent;
+    border: none;
+    font-size:0;
+}
+
+.formButton:hover {
+    color: #ffffff;
+    background: #246ff5b8;
+    border-radius: 6px;
+}
+
+.formHidden {
+    height: 0;
+}
+
+.centerContent {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 14px solid #2854a238;
+    border-radius: 34px;
+    background-color: white;
+}
+
+.centerContentCloset {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 14px solid #2854a238;
+    border-radius: 34px;
+    background-color: white;
+}
+
+.buttonEdit {
+    width: 200px;
+    padding: 6px;
+    border: 6px solid #0000001c;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+.listContent {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 15px;
+}
+
+.listContentCloset {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.listContent p {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+    width: 230px;
+    font-weight: 600;
+}
+
+.tableMain {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    /*border: 4px solid #c2c2c2;*/
+    border-collapse: collapse;
+    border-radius: 10px;
+    border-style: hidden;
+    box-shadow: 0 0 0 4px #c2c2c2;
+}
+
+.tableMainCloset {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    border-collapse: collapse;
+    border-radius: 10px;
+    border-style: hidden;
+    box-shadow: 0 0 0 10px #6565656b;
+    background-color: #183e84;
+}
+
+.tableHead {
+    width: 200px;
+}
+
+.tableHeadCloset {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.tableBody {
+    width: 400px;
+}
+
+.tableBodyCloset {
+    font-size: 15px;
+}
+
+.tdName {
+    width: 200px;
+}
+
+.tableMain tr {
+    width: 200px;
+    border-bottom: 4px solid #c2c2c2;
+}
+
+.tableMain td {
+    padding: 4px;
+    border-right: 4px solid #c2c2c2;
+}
+
+.tableMain th {
+    width: 200px;
+    text-align: center;
+    border-right: 4px solid #c2c2c2;
+    padding: 5px;
+    background-color: #d7d7d7a6;
+}
+
+.tableMain th:first-child {
+    width: 200px;
+    text-align: center;
+    border-right: 4px solid #c2c2c2;
+    padding: 5px;
+    background-color: #d7d7d7a6;
+    border-radius: 10px 0 0 0;
+}
+
+.tableMain th:last-child {
+    width: 200px;
+    text-align: center;
+    border-right: 4px solid #c2c2c2;
+    padding: 5px;
+    background-color: #d7d7d7a6;
+    border-radius: 0 10px 0 0;
+}
+
+.tableMainCloset tr {
+    width: 200px;
+    border-bottom: 4px solid #ffffff6b;
+}
+
+.tableMainCloset td {
+    border-right: 4px solid #ffffff6b;
+    text-align: center;
+    width: 1%;
+}
+
+.tableMainCloset th {
+    width: 200px;
+    text-align: center;
+    border-right: 4px solid #ffffff6b;
+    padding: 10px;
+}
+
+.tableMainCloset a {
+    color: #ffffff;
+    text-decoration: none;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    margin: 5px
+}
+
+.tableMainCloset a:hover {
+    color: #ffffff;
+    background: #ff9f5b70;
+    border-radius: 5px;
+}
+
+.tdName {
+    font-weight: 600;
+}
+
+.errors {
+    width: 200px;
+    color: #ff0000b5;
+    font-size: 10px;
+    text-align: justify;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ff6060a8;
+    padding: 2px;
+    border-radius: 5px;
+}
+

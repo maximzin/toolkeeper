@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все шкафы</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p>Все шкафы</p>
+    </div>
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/}">Вернуться назад</a>
+        </div>
+        <div class="listContent">
+            <table class="tableMain">
+                <thead class="tableHead">
+                <tr>
+                    <th>No.</th>
+                    <th>Название</th>
+                    <th>Действия</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                <tr th:each="closet, closetCount : ${closets}">
+                    <td th:text="${closetCount.count}">Value</td>
+                    <td th:text="${closet.getName()}">Value</td>
+                    <td><a th:href="@{/closet/{id}(id=${closet.getId()})}"
+                           th:text="Подробнее">closet</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="buttonEdit">
+            <a href="/closet/new">Создать шкаф</a>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+</body>
+</html>

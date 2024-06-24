@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый тип</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p>Новый тип</p>
+    </div>
+
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/tooltype}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+            <form th:method="POST" th:action="@{/tooltype}" th:object="${toolType}">
+                <div class="formLine">
+                    <label class="formLabel" for="name">Название: </label>
+                    <input class="formInputText" type="text" th:field="*{name}" id="name"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+
+                <div class="buttonEdit">
+                    <input class="formButton" type="submit" value="Создать"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+</body>
+</html>

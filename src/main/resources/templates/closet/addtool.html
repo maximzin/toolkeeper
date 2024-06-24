@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить инструмент</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p>Добавление инструмента</p>
+    </div>
+
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/closet}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+            <form th:method="POST" th:action="@{/closet/{id}/cell/{num_cell}(id=${id}, num_cell=${num_cell})}" th:object="${cellAndTools}">
+                <input type="hidden" th:value="${cell.getId()}" th:attr="name='idCell'"/>
+
+                <div class="formLine">
+                    <label class="formLabel" for="id_tool">Выберите инструмент: </label>
+                    <select class="formSelect" th:object="${cellAndTools}" th:field="*{idTool}" id="id_tool">
+                        <option th:each="tool : ${tools}" th:value="${tool.getId()}" th:text="${tool.getName()}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="count">Введите количество: </label>
+                    <input class="formInputText" type="text" th:field="*{count}" id="count"/>
+                </div>
+                <div class="errors" th:if="${#fields.hasErrors('count')}" th:errors="*{count}">count Error</div>
+
+                <div class="buttonEdit">
+                    <input class="formButton" type="submit" value="Добавить"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+</body>
+</html>

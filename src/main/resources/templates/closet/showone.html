@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Шкаф</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <br>
+    <div class="centerContentCloset">
+        <div class="buttonNav">
+            <a th:href="@{/closet}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+            <table class="tableMain">
+                <thead class="tableHead">
+                <tr>
+                    <th>Название</th>
+                    <th>Тип</th>
+                    <th>Цех</th>
+                    <th>Действие 1</th>
+                    <th>Действие 2</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                <tr>
+                    <td th:text="${closet.getName()}">Value</td>
+                    <td th:text="${closet.closetType.getName()}">Value</td>
+                    <td th:text="${closet.ceh.getName()}"></td>
+                    <td><a th:href="@{/closet/{id}/edit(id=${closet.getId()})}">Редактировать</a></td>
+                    <td><button id="btnPressed" class="formButton">Удалить</button>
+                        <form class="formHidden" th:method="DELETE" th:action="@{/closet/{id}(id=${closet.getId()})}">
+                            <input id="btnHidden" class="formButtonHidden" type="submit" value="Удалить"/>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div class="listContentCloset">
+            <table class="tableMainCloset">
+                <thead class="tableHeadCloset">
+                <tr>
+                    <th th:colspan="${closet.closetType.getCellsForShelf()}" th:text="'Ячейки'">Value</th>
+                </tr>
+                </thead>
+                <tbody class="tableBodyCloset">
+                <tr th:each="iShelf : ${#numbers.sequence(1, closet.getClosetType().getShelves())}">
+                    <td th:each="iCell : ${#numbers.sequence(1, closet.getClosetType().getCellsForShelf())}">
+                        <div th:each="cellOne : ${cells}" th:if="${cellOne.getNumber()} == ${cellOne.getNumByPosition(closet.getClosetType().getCellsForShelf(), iShelf, iCell)}">
+                            <a th:text="${cellOne.getNumber()}" th:href="@{/closet/{id}/cell/{num_cell}(id=${closet.getId()}, num_cell=${cellOne.getNumber()})}">Ссылка</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+<script type="text/javascript" th:src="@{/js/deleteConfirm.js}"></script>
+
+
+
+</body>
+</html>

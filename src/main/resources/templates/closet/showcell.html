@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница ячейки</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p th:text="'Ячейка: ' + ${num_cell}">Value</p>
+    </div>
+
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/closet/{id}(id=${closet.getId()})}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+            <table class="tableMain">
+                <thead class="tableHead">
+                <tr>
+                    <th>No.</th>
+                    <th>Инструмент</th>
+                    <th>Количество</th>
+                    <th>Действие</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                <tr th:each="cellAndTool, toolCount : ${cellAndTools}">
+                    <td th:text="${toolCount.count}">Value</td>
+                    <td th:text="${cellAndTool.tool.getName()}">Value</td>
+                    <td th:text="${cellAndTool.getCount()}">Value</td>
+                    <td><form th:method="DELETE" th:action="@{/closet/{id}/cell/{num_cell}/{id_cellAndTool}(id=${closet.getId()}, num_cell=${num_cell}, id_cellAndTool=${cellAndTool.getId()})}">
+                            <input id="btnPressed" class="formButton" type="submit" value="Удалить"/>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="buttonEdit">
+            <a th:href="@{/closet/{id}/cell/{num_cell}/addtool(id=${id}, num_cell=${num_cell})}">Добавить инструмент</a>
+            <br>
+            <br>
+            <button class="formButton" onclick="connectToPort()">Подключиться к порту</button>
+            <br>
+            <br>
+            <button class="formButton" onclick="sendCommand()">Отправить команду</button>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+<script>
+    let port;
+
+    async function connectToPort() {
+        try {
+            port = await navigator.serial.requestPort();
+            await port.open({ baudRate: 2400 });
+            console.log('Порт открыт:', port);
+            port.addEventListener('data', handleData);
+        } catch (error) {
+            console.error('Ошибка при открытии порта:', error);
+        }
+    }
+
+    async function sendCommand() {
+        const writer = port.writable.getWriter();
+        const data = new Uint8Array([130, 0, 1, 0, 0]);
+        await writer.write(data);
+        console.log('Отправлено на устройство:', data);
+        writer.releaseLock();
+
+        const reader = port.readable.getReader();
+        while (true) {
+            const { value, done } = await reader.read();
+            if (done) {
+                reader.releaseLock();
+                break;
+            }
+            console.log(value);
+        }
+    }
+
+    function handleData(event) {
+        const receivedData = new TextDecoder().decode(event.data);
+        const consoleOutput = document.getElementById('console');
+        consoleOutput.textContent += receivedData + '\n';
+    }
+</script>
+
+
+</body>
+</html>
